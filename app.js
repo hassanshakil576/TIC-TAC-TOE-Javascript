@@ -21,9 +21,6 @@ boxes.forEach((item) => {
         }
         turnX = !turnX;
         item.disabled = true; // this disabled the box after clicking it one time
-        resetBtn.addEventListener("click", () => {
-            item.innerHTML = "";
-        })
         checkWinner()
     })
 })
@@ -41,9 +38,11 @@ const winPatterns = [
 ];
 
 const resetGame = () => {
-    turnX = true;
+    turnX = true; //jab game reset ho tou wapsi X ki turn se shuroo hona chaiyeh hai
     enableButtons();
-    msgContainer.classList.add("hide")
+    msgContainer.classList.add("hide");
+    msg.classList.remove("animate__animated", "animate__fadeInDown");
+    newgameBtn.classList.add("animate__animated", "animate__fadeInDown");
 }
 
 
@@ -71,7 +70,9 @@ const checkWinner = () => {
             if (pos1Val === pos2Val && pos2Val === pos3Val) {
                 // console.log("winner", pos1Val);
                 msg.innerHTML = `Winner "${pos1Val}"`
-                msgContainer.classList.remove("hide")
+                msgContainer.classList.remove("hide");
+                msg.classList.add("animate__animated", "animate__fadeInDown");
+                newgameBtn.classList.add("animate__animated", "animate__fadeInDown");
                 disableButtons();
             }
 
